@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAJA MANÁ - Sistema de Registro</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Iconos Tabler (como los que usa el ITB SGA) -->
+    <script src="https://cdn.jsdelivr.net/npm/@tabler/icons@1.74.0/icons.js"></script>
+</head>
+<body>
+
+    <!-- CABECERA Y TABS -->
+    <header class="app-header">
+        <div class="logo-container">
+            <img src="assets/logo.jpg" alt="Logo" class="logo-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMwZDZlZmQiIHN0cm9rZS13aWR0aD0iMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggc3Ryb2tlPSJub25lIiBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTMgMjF2LTEzYTIgMiAwIDAgMSAyIC0yaDE0YTIgMiAwIDAgMSAyIDJ2MTMiIC8+PHBhdGggZD0iTTEwIDE2aDRsLTEgNWgtMmwtMSA1eiIgLz48L3N2Zz4='">
+            <span class="business-name" id="displayBusinessName">CAJA MANÁ</span>
+        </div>
+        <nav class="nav-tabs" id="mainTabs">
+            <button class="nav-tab active" data-target="module-pos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10h10" /><path d="M7 14h10" /><path d="M7 18h10" /><path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2" /></svg>
+                Caja
+            </button>
+            <button class="nav-tab" data-target="module-resumen">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 3v18h18" /><path d="M20 18v3" /><path d="M16 16v5" /><path d="M12 13v8" /><path d="M8 16v5" /><path d="M3 11c6 0 5 -5 9 -5s3 5 9 5" /></svg>
+                Resumen del Día
+            </button>
+            <button class="nav-tab" data-target="module-precios">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 21h18" /><path d="M19 10v11" /><path d="M5 6v15" /><path d="M9 14v7" /><path d="M15 14v7" /><path d="M5 6a4 4 0 0 1 8 0v8h-8z" /><path d="M11 6a4 4 0 0 1 8 0v4h-8z" /></svg>
+                Precios
+            </button>
+            <button class="nav-tab" data-target="module-gastos">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" /><path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" /></svg>
+                Control Gastos
+            </button>
+            <button class="nav-tab" data-target="module-fiados">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M9 12l2 2l4 -4" /></svg>
+                Fiados
+            </button>
+            <button class="nav-tab" data-target="module-config">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+                Config
+            </button>
+        </nav>
+    </header>
+
+    <!-- CONTENEDOR PRINCIPAL -->
+    <main class="main-container">
+
+        <!-- MÓDULO 1: POS (CAJA) -->
+        <section id="module-pos" class="module active">
+            <div class="pos-layout">
+                <!-- Productos (Botones) -->
+                <div class="products-panel card" id="posProductsList">
+                    <!-- Se llena con JS -->
+                </div>
+
+                <!-- Ticket Actual -->
+                <div class="ticket-panel">
+                    <div class="ticket-header">
+                        TICKET / ORDEN ACTUAL
+                    </div>
+                    <div class="ticket-items" id="ticketItems">
+                        <!-- Items del ticket se llenan con JS -->
+                        <div style="text-align: center; color: var(--text-muted); margin-top: 50px;">
+                            Seleccione productos para agregar a la cuenta
+                        </div>
+                    </div>
+                    
+                    <div class="ticket-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="posSubtotal">$ 0.00</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>TOTAL:</span>
+                            <span id="posTotal">$ 0.00</span>
+                        </div>
+
+                        <div class="payment-section">
+                            <!-- Toggle Aquí / Para Llevar -->
+                            <div class="tipo-pedido-toggle" style="display: flex; gap: 0; margin-bottom: 15px; border-radius: 8px; overflow: hidden; border: 2px solid var(--primary-color);">
+                                <button id="btnTipoAqui" class="btn-tipo-pedido active" onclick="POS.setTipoPedido('aqui')" style="flex:1; padding: 10px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.2s; background: var(--primary-color); color: white;">
+                                    🍽️ AQUÍ
+                                </button>
+                                <button id="btnTipoLlevar" class="btn-tipo-pedido" onclick="POS.setTipoPedido('llevar')" style="flex:1; padding: 10px; font-weight: 700; font-size: 1rem; border: none; cursor: pointer; transition: all 0.2s; background: white; color: var(--text-main);">
+                                    📦 PARA LLEVAR
+                                </button>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="montoRecibido">DINERO RECIBIDO ($):</label>
+                                <input type="number" id="montoRecibido" class="form-control form-control-lg" placeholder="0.00" min="0" step="0.01">
+                                <div class="quick-cash-container">
+                                    <button class="btn-cash" onclick="POS.setMontoRecibido(1)">$1</button>
+                                    <button class="btn-cash" onclick="POS.setMontoRecibido(5)">$5</button>
+                                    <button class="btn-cash" onclick="POS.setMontoRecibido(10)">$10</button>
+                                    <button class="btn-cash" onclick="POS.setMontoRecibido(20)">$20</button>
+                                    <button class="btn-cash" onclick="POS.setMontoRecibido('exacto')" style="background: var(--success); color: white;">Exacto</button>
+                                </div>
+                            </div>
+                            
+                            <div class="change-display">
+                                CAMBIO: <span id="posCambio">$ 0.00</span>
+                            </div>
+
+                            <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                <button id="btnFiar" class="btn-primary" style="flex:1; background: var(--warning); color: #000;" disabled>FIAR</button>
+                                <button id="btnCobrar" class="btn-primary" style="flex:2;" disabled>COBRAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: RESUMEN DEL DÍA -->
+        <section id="module-resumen" class="module">
+            <div class="dashboard-grid">
+                <div class="stat-card">
+                    <h4>Ventas Hoy</h4>
+                    <div class="stat-value" id="statVentasTotal">$ 0.00</div>
+                </div>
+                <div class="stat-card danger">
+                    <h4>Gastos Hoy</h4>
+                    <div class="stat-value" id="statGastosTotal">$ 0.00</div>
+                </div>
+                <div class="stat-card success">
+                    <h4>Ganancia Neta</h4>
+                    <div class="stat-value" id="statGanancia">$ 0.00</div>
+                </div>
+                <div class="stat-card warning">
+                    <h4>Total Platos Servidos</h4>
+                    <div class="stat-value" id="statPlatos">0</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9);">
+                    <h4>🍽️ Aquí</h4>
+                    <div class="stat-value" id="statAqui" style="color: #2e7d32;">0</div>
+                </div>
+                <div class="stat-card" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb);">
+                    <h4>📦 Para Llevar</h4>
+                    <div class="stat-value" id="statLlevar" style="color: #1565c0;">0</div>
+                </div>
+            </div>
+
+            <!-- Notas y Recordatorios -->
+            <div class="card" style="margin-bottom: 20px; background-color: #fffde7; border-left: 5px solid #fbc02d;">
+                <h3 style="margin-bottom: 10px; color: #f57f17; border-bottom: 2px solid #fff59d; padding-bottom: 5px;">📌 Notas y Recordatorios</h3>
+                <textarea id="notasTextarea" placeholder="Escribe aquí las compras pendientes, recordatorios o tareas del día... (Se guardará automáticamente)" style="width: 100%; height: 100px; border: none; background: transparent; resize: vertical; font-family: inherit; font-size: 1rem; color: #555; outline: none;"></textarea>
+            </div>
+
+            <div class="pos-layout" style="height: auto; min-height: 400px; grid-template-columns: 1fr 1fr;">
+                <div class="card">
+                    <h3 style="margin-bottom: 15px; border-bottom: 2px solid var(--border-color); padding-bottom: 5px;">Platos Vendidos (Contadores)</h3>
+                    <div class="table-container" style="padding:0">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contadoresPlatosBody">
+                                <!-- Llenado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="action-bar" style="align-items: center;">
+                        <h3 style="margin: 0;">Historial de Ventas Hoy</h3>
+                        <button class="btn-danger" id="btnCerrarCaja" style="font-weight: bold;">CERRAR CAJA (Fin de Día)</button>
+                    </div>
+                    
+                    <div class="table-container" style="padding:0; max-height: 350px; overflow-y:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Ticket</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historialVentasBody">
+                                <!-- Llenado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 3: PRECIOS -->
+        <section id="module-precios" class="module">
+            <div class="card">
+                <div class="action-bar">
+                    <h2>Catálogo de Productos y Precios</h2>
+                    <button class="btn-primary" style="width: auto; padding: 10px 20px;" id="btnNuevoProducto">+ Nuevo Producto</button>
+                </div>
+                
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio Venta</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productosTableBody">
+                            <!-- Llenado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 4: GASTOS -->
+        <section id="module-gastos" class="module">
+            <div class="pos-layout" style="height: auto; grid-template-columns: 1fr 2fr;">
+                <!-- Formulario Gasto -->
+                <div class="card">
+                    <h3 style="margin-bottom: 20px;">Registrar Gasto o Factura</h3>
+                    <form id="formGasto">
+                        <div class="form-group">
+                            <label>Concepto / Descripción</label>
+                            <input type="text" id="gastoConcepto" class="form-control" required placeholder="Ej. Compra de plásticos, Mercado">
+                        </div>
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <select id="gastoCategoria" class="form-control" required>
+                                <option value="mercado">Mercado (Comida)</option>
+                                <option value="plasticos">Plásticos y Descartables</option>
+                                <option value="tienda">Tienda / Abarrotes</option>
+                                <option value="bebidas">Bebidas / Aguas</option>
+                                <option value="otros">Otros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Monto a pagar ($)</label>
+                            <input type="number" id="gastoMonto" class="form-control" required min="0.01" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Proveedor (Opcional)</label>
+                            <input type="text" id="gastoProveedor" class="form-control" placeholder="Ej. El Tía, Doña María">
+                        </div>
+                        <button type="submit" class="btn-primary" style="margin-top: 10px;">REGISTRAR GASTO</button>
+                    </form>
+                </div>
+
+                <!-- Tabla Gastos -->
+                <div class="card">
+                    <div class="action-bar">
+                        <h3>Gastos del Día</h3>
+                        <div>Total Gastos Hoy: <strong id="totalGastosDisplay" style="color: var(--danger); font-size: 1.2rem;">$ 0.00</strong></div>
+                    </div>
+                    <div class="table-container" style="max-height: 400px; overflow-y:auto;">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Hora</th>
+                                    <th>Concepto</th>
+                                    <th>Categoría</th>
+                                    <th>Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gastosTableBody">
+                                <!-- Llenado por JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO: FIADOS -->
+        <section id="module-fiados" class="module">
+            <div class="header-actions">
+                <h2>Cuentas por Cobrar (Fiados)</h2>
+            </div>
+            
+            <div class="card" style="margin-top: 20px;">
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Deuda Total</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fiadosListBody">
+                            <!-- JS llena esto -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 4: CONFIGURACIÓN -->
+        <section id="module-config" class="module">
+            <div class="dashboard-grid">
+                <!-- Backup -->
+                <div class="card">
+                    <h3>Respaldos (Backup)</h3>
+                    <p style="color: var(--text-muted); margin: 15px 0;">Guarda una copia de seguridad de todos tus datos, o restaura datos desde un archivo.</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn-primary" id="btnExportar">Exportar Backup</button>
+                        <button class="btn-primary" style="background: var(--text-muted);" id="btnImportarSelect">Importar Backup</button>
+                    </div>
+                    <input type="file" id="fileImportar" style="display: none;" accept=".json">
+                </div>
+
+                <!-- Exportar a Excel -->
+                <div class="card">
+                    <h3>Exportar a Excel (CSV)</h3>
+                    <p style="color: var(--text-muted); margin: 15px 0;">Descarga las ventas o gastos en un archivo que se abre con Excel.</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <button class="btn-success" style="flex:1; padding: 15px; font-weight: bold;" id="btnExportCSVVentas">📊 Ventas a Excel</button>
+                        <button class="btn-danger" style="flex:1; padding: 15px; font-weight: bold;" id="btnExportCSVGastos">📋 Gastos a Excel</button>
+                    </div>
+                </div>
+
+                <!-- Negocio -->
+                <div class="card">
+                    <h3>Ajustes del Negocio</h3>
+                    <div class="form-group" style="margin-top: 15px;">
+                        <label>Nombre del Sistema</label>
+                        <input type="text" id="configNombre" class="form-control" value="CAJA MANÁ">
+                    </div>
+                    <button class="btn-primary" id="btnGuardarConfig">Guardar Ajustes</button>
+                    <div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 6px;">
+                        <small style="color: var(--text-muted);">📂 Los datos se guardan en:</small><br>
+                        <code id="dataPathDisplay" style="font-size: 0.8rem; color: var(--primary-color);"></code>
+                    </div>
+                </div>
+
+
+                <!-- Peligro -->
+                <div class="card" style="border: 1px solid var(--danger);">
+                    <h3 style="color: var(--danger);">Zona de Peligro</h3>
+                    <p style="color: var(--text-muted); margin: 15px 0;">Borrar todos los datos del sistema. Esta acción no se puede deshacer.</p>
+                    <button class="btn-danger" style="width: 100%; padding: 15px; font-weight:bold;" id="btnResetData">ELIMINAR TODO EL SISTEMA</button>
+                </div>
+            </div>
+            
+            <div class="card mt-3" style="margin-top: 20px;">
+                <h3>Historial de Cierres de Caja (Días Anteriores)</h3>
+                <div class="table-container" style="margin-top: 15px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Ventas Totales</th>
+                                <th>Gastos Totales</th>
+                                <th>Ganancia Sistema</th>
+                                <th>Declarado</th>
+                                <th>Diferencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cierresTableBody">
+                            <!-- Llenado por JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modales -->
+    <div class="modal-overlay" id="productoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="productoModalTitle">Nuevo Producto</h3>
+                <button class="close-btn" onclick="document.getElementById('productoModal').classList.remove('active')">&times;</button>
+            </div>
+            <form id="formProducto">
+                <input type="hidden" id="prodId">
+                <div class="form-group">
+                    <label>Nombre del Producto</label>
+                    <input type="text" id="prodNombre" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Categoría</label>
+                    <select id="prodCategoria" class="form-control" required>
+                        <option value="comida">Comida / Platos</option>
+                        <option value="bebida">Bebidas / Aguas</option>
+                        <option value="extra">Extras</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Precio de Venta ($)</label>
+                    <input type="number" id="prodPrecio" class="form-control" required min="0.01" step="0.01">
+                </div>
+                <div class="form-group" style="display:flex; gap:10px;">
+                    <div style="flex:1;">
+                        <label>Stock Actual (Opcional)</label>
+                        <input type="number" id="prodStock" class="form-control" min="0" placeholder="Ej: 50">
+                    </div>
+                    <div style="flex:1;">
+                        <label>Alerta Mínimo (Opcional)</label>
+                        <input type="number" id="prodAlertaStock" class="form-control" min="0" placeholder="Ej: 5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="prodActivo" checked> Producto Disponible (Activo)
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary" style="margin-top: 15px;">GUARDAR PRODUCTO</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/storage.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/pos.js"></script>
+    <script src="js/fiados.js"></script>
+    <script src="js/resumen.js"></script>
+    <script src="js/productos.js"></script>
+    <script src="js/gastos.js"></script>
+    <script src="js/config.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "caja-mana",
+  "version": "1.0.0",
+  "description": "Sistema de Caja Registradora para Restaurante",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "keywords": [],
+  "author": "Gorda",
+  "license": "ISC",
+  "build": {
+    "appId": "com.cajamana.app",
+    "productName": "Caja Mana",
+    "win": {
+      "target": "portable",
+      "icon": "assets/logo.jpg"
+    }
+  },
+  "devDependencies": {
+    "electron": "^36.4.0",
+    "electron-builder": "^25.1.8"
+  }
+}
