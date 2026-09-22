@@ -1,0 +1,6 @@
+{
+  "appId": "com.cajamana.app",
+  "appName": "Caja Maná",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
