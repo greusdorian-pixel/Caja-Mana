@@ -1,4 +1,4 @@
-const CACHE_NAME = 'caja-mana-v1';
+const CACHE_NAME = 'caja-mana-v2';
 const urlsToCache = [
   './',
   './index.html',
