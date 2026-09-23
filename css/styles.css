@@ -489,86 +489,90 @@ tbody tr:hover {
 @media (max-width: 768px) {
     .app-header {
         flex-direction: column;
-        gap: 15px;
-        padding: 15px 10px;
-    }
-
-    .nav-tabs {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .nav-tab {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-    }
-
-    .main-container {
+        gap: 10px;
         padding: 10px;
     }
 
+    .nav-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        width: 100%;
+        gap: 4px;
+    }
+
+    .nav-tab {
+        padding: 8px 4px;
+        font-size: 0.7rem;
+        flex-direction: column;
+        gap: 3px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .nav-tab svg { width: 18px; height: 18px; }
+
+    .main-container { padding: 10px; }
+
     .pos-layout {
-        grid-template-columns: 1fr !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px;
         height: auto !important;
     }
 
-    .products-panel {
-        max-height: 50vh;
-        overflow-y: auto;
-    }
+    .products-panel { max-height: 45vh; overflow-y: auto; }
 
     .products-grid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 10px;
     }
 
-    .ticket-panel {
-        height: auto;
-        min-height: unset;
-        overflow: visible;
-    }
+    .btn-product { min-height: 80px; padding: 10px 8px; }
 
-    .ticket-items {
-        min-height: unset;
-        max-height: none;
-        overflow-y: visible;
-    }
+    .ticket-panel { height: auto; min-height: unset; overflow: visible; }
 
-    .ticket-summary {
-        padding: 12px;
-    }
+    .ticket-items { min-height: unset; max-height: none; overflow-y: visible; }
 
-    .tipo-pedido-toggle {
-        margin-bottom: 10px;
-    }
-
-    .tipo-pedido-toggle button {
-        padding: 6px !important;
-        font-size: 0.9rem !important;
-    }
-
-    .form-group label {
+    .ticket-item {
+        grid-template-columns: 2fr 1fr 1fr 20px;
+        gap: 6px;
         font-size: 0.9rem;
     }
 
-    .form-control-lg {
-        padding: 6px;
-        font-size: 1.2rem;
+    .ticket-summary { padding: 12px; }
+
+    .tipo-pedido-toggle button {
+        padding: 8px !important;
+        font-size: 0.85rem !important;
     }
 
-    .change-display {
-        font-size: 1.2rem;
-    }
+    .quick-cash-container { gap: 5px; }
+    .btn-cash { padding: 10px 4px; font-size: 0.85rem; }
+    .form-group label { font-size: 0.9rem; }
+    .form-control { font-size: 1rem; padding: 12px 10px; }
+    .form-control-lg { padding: 10px; font-size: 1.3rem; }
+    .change-display { font-size: 1.2rem; }
+    .btn-primary { padding: 16px; font-size: 1.1rem; }
 
-    .dashboard-grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .dashboard-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .stat-card { padding: 14px 10px; }
+    .stat-card h4 { font-size: 0.75rem; }
+    .stat-card .stat-value { font-size: 1.4rem; }
 
-    .stat-card .stat-value {
-        font-size: 1.5rem;
-    }
-    
+    .table-container { padding: 10px; overflow-x: auto; }
+    table { min-width: 300px; }
+    th, td { padding: 8px 10px; font-size: 0.85rem; white-space: nowrap; }
+
+    .action-bar { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .action-bar button { width: 100%; }
+
     .modal-content {
         padding: 15px;
-        width: 95%;
+        width: 96%;
+        margin: 0 auto;
+        max-height: 90vh;
+        overflow-y: auto;
     }
+
+    .header-actions { flex-direction: column; gap: 10px; }
 }
