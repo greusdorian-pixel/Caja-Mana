@@ -134,6 +134,19 @@ body {
     align-items: start;
 }
 
+/* Layout de 2 columnas iguales (Resumen) */
+.layout-2col {
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+    min-height: 400px;
+}
+
+/* Layout de Gastos: formulario + tabla */
+.layout-gastos {
+    grid-template-columns: 1fr 2fr;
+    height: auto;
+}
+
 /* Panel Izquierdo: Productos */
 .products-panel {
     display: flex;
