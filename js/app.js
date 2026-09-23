@@ -12,6 +12,7 @@ const App = {
         if (typeof Resumen !== 'undefined') Resumen.init();
         if (typeof Productos !== 'undefined') Productos.init();
         if (typeof Gastos !== 'undefined') Gastos.init();
+        if (typeof Fiados !== 'undefined') Fiados.init();
         if (typeof Config !== 'undefined') Config.init();
     },
 
@@ -50,6 +51,9 @@ const App = {
                 break;
             case 'module-gastos':
                 if (typeof Gastos !== 'undefined') Gastos.updateTable();
+                break;
+            case 'module-fiados':
+                if (typeof Fiados !== 'undefined') Fiados.renderFiados();
                 break;
             case 'module-config':
                 if (typeof Config !== 'undefined') Config.updateCierresTable();
